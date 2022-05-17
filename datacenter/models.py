@@ -33,9 +33,9 @@ class Visit(models.Model):
         )
 
     def get_duration(self) -> datetime.timedelta:
-        visit_started = localtime(self.entered_at)
-        visit_ended = localtime(self.leaved_at) if self.leaved_at else localtime()
+        visit_started_at= localtime(self.entered_at)
+        visit_ended_at = localtime(self.leaved_at) if self.leaved_at else localtime()
 
-        delta = visit_ended - visit_started
-
-        return delta
+        visit_duration = visit_ended_at - visit_started_at
+        
+        return visit_duration
