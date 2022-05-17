@@ -13,13 +13,13 @@ def passcard_info_view(request, passcode):
     this_passcard_visits_serialized = []
 
     for visit in this_passcard_visits:
-        visit_info = {
+        visit_characteristics_for_view = {
             'entered_at': localtime(visit.created_at),
             'duration': visit.get_formatted_duration(),
             'is_strange': visit.is_visit_long()
         }
 
-        this_passcard_visits_serialized.append(visit_info)
+        this_passcard_visits_serialized.append(visit_characteristics_for_view)
 
     context = {
         'passcard': passcard,
