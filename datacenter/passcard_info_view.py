@@ -17,10 +17,7 @@ def format_duration(delta: datetime.timedelta) -> str:
 def is_visit_long(visit: Visit, minutes=60) -> bool:
     visit_duration = visit.get_duration()
 
-    if visit_duration.total_seconds() >= minutes * 60:
-        return True
-
-    return False
+    return visit_duration.total_seconds() >= minutes * 60
 
 
 def passcard_info_view(request, passcode):

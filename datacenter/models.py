@@ -37,5 +37,5 @@ class Visit(models.Model):
         visit_ended_at = localtime(self.leaved_at) if self.leaved_at else localtime()
 
         visit_duration = visit_ended_at - visit_started_at
-        
+
         return visit_duration
