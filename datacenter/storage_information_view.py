@@ -9,10 +9,10 @@ from django.shortcuts import render
 
 
 def storage_information_view(request):
-    current_visits_info = []
-    current_visits_serialized = Visit.objects.all().filter(leaved_at=None)
+    current_visits_serialized = []
+    current_visits = Visit.objects.filter(leaved_at=None)
 
-    for visit in current_visits_serialized:
+    for visit in current_visits:
         visit_info = {
             'who_entered': visit.passcard.owner_name,
             'entered_at': localtime(visit.entered_at),
@@ -20,9 +20,9 @@ def storage_information_view(request):
             'is_strange': visit.is_visit_long()
         }
 
-        current_visits_info.append(visit_info)
+        current_visits_serialized.append(visit_info)
 
     context = {
-        'non_closed_visits': current_visits_info,
+        'non_closed_visits': current_visits_serialized,
     }
     return render(request, 'storage_information.html', context)
