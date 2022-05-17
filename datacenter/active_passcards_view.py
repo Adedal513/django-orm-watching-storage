@@ -10,8 +10,8 @@ from django.shortcuts import render
 
 
 def active_passcards_view(request):
-    all_passcards = Passcard.objects.all().filter(is_active=True)
-    current_visits = Visit.objects.all().filter(leaved_at=None)
+    all_passcards = Passcard.objects.filter(is_active=True)
+    current_visits = Visit.objects.filter(leaved_at=None)
 
     for visit in current_visits:
         print(visit.passcard.owner_name)
