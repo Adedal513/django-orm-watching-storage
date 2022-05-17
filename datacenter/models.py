@@ -33,9 +33,21 @@ class Visit(models.Model):
         )
 
     def get_duration(self) -> datetime.timedelta:
-        visit_started_at= localtime(self.entered_at)
+        visit_started_at = localtime(self.entered_at)
         visit_ended_at = localtime(self.leaved_at) if self.leaved_at else localtime()
 
         visit_duration = visit_ended_at - visit_started_at
 
         return visit_duration
+
+    def get_formatted_duration(self) -> str:
+        visit_duration = self.get_duration()
+        hours, minutes, seconds = str(visit_duration).split('.')[0].split(':')
+        string_duration = f'{hours} часов {minutes} минут {seconds} секунд'
+
+        return string_duration
+
+    def is_visit_long(self, minutes=60) -> bool:
+        visit_duration = self.get_duration()
+
+        return visit_duration.total_seconds() >= minutes * 60
