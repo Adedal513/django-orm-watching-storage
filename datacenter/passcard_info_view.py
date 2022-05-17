@@ -15,8 +15,9 @@ def format_duration(delta: datetime.timedelta) -> str:
 
 
 def is_visit_long(visit: Visit, minutes=60) -> bool:
-    delta = visit.get_duration()
-    if delta.total_seconds() >= minutes * 60:
+    visit_duration = visit.get_duration()
+
+    if visit_duration.total_seconds() >= minutes * 60:
         return True
 
     return False
