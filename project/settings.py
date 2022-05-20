@@ -6,12 +6,12 @@ load_dotenv()
 
 DATABASES = {
     'default': {
-        'ENGINE': getenv('ENGINE'),
-        'HOST': getenv('HOST'),
-        'PORT': getenv('PORT'),
-        'NAME': getenv('NAME'),
-        'USER': getenv('USER'),
-        'PASSWORD': getenv('PASSWORD'),
+        'ENGINE': getenv('DB_ENGINE'),
+        'HOST': getenv('DB_HOST'),
+        'PORT': getenv('DB_PORT'),
+        'NAME': getenv('DB_NAME'),
+        'USER': getenv('DB_USER'),
+        'PASSWORD': getenv('DB_PASSWORD'),
     }
 }
 
