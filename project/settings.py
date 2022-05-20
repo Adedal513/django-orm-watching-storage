@@ -1,31 +1,34 @@
-from os import getenv, path
+import os
+from os import path
 
 from dotenv import load_dotenv
+from environs import Env
+
 
 load_dotenv()
+env = Env()
+env.read_env()
 
 DATABASES = {
     'default': {
-        'ENGINE': getenv('DB_ENGINE'),
-        'HOST': getenv('DB_HOST'),
-        'PORT': getenv('DB_PORT'),
-        'NAME': getenv('DB_NAME'),
-        'USER': getenv('DB_USER'),
-        'PASSWORD': getenv('DB_PASSWORD'),
+        'ENGINE': env.str('DB_ENGINE'),
+        'HOST': env.str('DB_HOST'),
+        'PORT': env.str('DB_PORT'),
+        'NAME': env.str('DB_NAME'),
+        'USER': env.str('DB_USER'),
+        'PASSWORD': env.str('DB_PASSWORD'),
     }
 }
 
-
 INSTALLED_APPS = ['datacenter']
 
-SECRET_KEY = getenv('SECRET_KEY')
+SECRET_KEY = env.str('SECRET_KEY')
 
-DEBUG = getenv('DEBUG') in ['True', 'true', 'TRUE']
+DEBUG = env.str('DEBUG') in ['True', 'true', 'TRUE']
 
 ROOT_URLCONF = 'project.urls'
 
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = env.list(name='ALLOWED_HOSTS', subcast=str, separator=',')
 
 BASE_DIR = path.dirname(path.dirname(path.abspath(__file__)))
 TEMPLATES = [

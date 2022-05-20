@@ -5,3 +5,4 @@ sqlparse==0.4.2
 tzdata==2022.1
 pip==22.1
 setuptools==62.3.2
+environs~=9.5.0

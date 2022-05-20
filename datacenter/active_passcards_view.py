@@ -4,6 +4,7 @@ import django.utils.timezone
 from django.db.models import QuerySet
 from django.utils.timezone import localtime
 
+import project.settings
 from datacenter.models import Passcard, Visit
 from datacenter.models import Visit
 from django.shortcuts import render
